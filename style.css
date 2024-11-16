@@ -1,0 +1,171 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+body {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.container {
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  perspective: 10000px;
+  animation: rotar 8s linear infinite alternate;
+
+  @media (width <= 1111px) {
+    zoom: 0.6;
+  }
+
+  &.pausa {
+    animation-play-state: paused;
+  }
+
+  .front {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 10000px;
+    --degre: 67deg;
+
+    .side {
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      background: repeating-linear-gradient(
+          to bottom,
+          transparent 0px 9px,
+          mediumorchid 9px 10px
+        ),
+        repeating-linear-gradient(
+          to right,
+          transparent 0px 9px,
+          mediumorchid 9px 10px
+        ),
+        black;
+      transform-origin: 50% 100%;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+
+      &.side-center {
+        background-color: #fff1;
+      }
+
+      &.side-top-right {
+        transform: rotate(36.5deg) scaleX(0.96) translate(-45px, -120.5px)
+          rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-top-left {
+        transform: rotate(-36.5deg) scaleX(0.96) translate(45px, -120.5px)
+          rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-bottom-right {
+        transform: rotate(106deg) translate(-62px, -46px) rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-bottom-left {
+        transform: rotate(-106deg) translate(62px, -46px) rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-bottom-center {
+        transform: rotateX(-248deg);
+        background-color: #fff1;
+      }
+    }
+  }
+
+  .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    perspective: 10000px;
+    top: 0;
+    --degre: 67deg;
+    transform: translateZ(-221px) translateY(13px) rotate(180deg) scaleZ(-1);
+
+    .side {
+      position: absolute;
+      background: repeating-linear-gradient(
+          to bottom,
+          transparent 0px 9px,
+          mediumorchid 9px 10px
+        ),
+        repeating-linear-gradient(
+          to right,
+          transparent 0px 9px,
+          mediumorchid 9px 10px
+        ),
+        black;
+      width: inherit;
+      height: inherit;
+      transform-origin: 50% 100%;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+
+      &.side-center {
+        background-color: #fff1;
+      }
+
+      &.side-top-right {
+        transform: rotate(36.5deg) scaleX(0.96) translate(-45px, -120.5px)
+          rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-top-left {
+        transform: rotate(-36.5deg) scaleX(0.96) translate(45px, -120.5px)
+          rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-bottom-right {
+        transform: rotate(106deg) translate(-62px, -46px) rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-bottom-left {
+        transform: rotate(-106deg) translate(62px, -46px) rotateX(var(--degre));
+        background-color: #fff1;
+      }
+
+      &.side-bottom-center {
+        transform: rotateX(-248deg);
+        background-color: #fff1;
+      }
+    }
+  }
+}
+
+@keyframes rotar {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(359deg) rotateY(359deg);
+  }
+}
